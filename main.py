@@ -41,7 +41,7 @@ def view_tasks():
             if re_fully_remove.lower() == "yes":
                 tasks.clear()
                 print("Emptied list")
-    time.sleep(3)
+    time.sleep(1)
 
 def task_done():
     #lets print a list using a different method because why not
@@ -60,7 +60,7 @@ def task_done():
     time.sleep(3)
 while True:
     print("MENU")
-    choice=int(input("1. Do you want to Add a task\n2. Delete a task,\n3. View tasks,\n4. Mark a task as done\n5. Exit the program\n:> "))
+    choice=int(input("1. Do you want to Add a task\n2. Delete a task,\n3. View tasks,\n4. Mark a task as done\n5. Edit an existing task\n6. Exit the program\n:> "))
     if choice==1:
         
         add_tasks()
@@ -71,6 +71,18 @@ while True:
     elif choice==4:
         task_done()
     elif choice==5:
+        edit_choice=input("Which task do you want to edit:> ")
+        if edit_choice in tasks:
+            change_task=input("What dou you wan to change it to:> ")
+            for i in range(0,len(tasks)):
+                if edit_choice==tasks[i]:
+                    tasks[i]=change_task
+                    print(f"{edit_choice} has been succesfully been changed to {change_task}")
+                    time.sleep(2)
+        else:
+            print(f"{edit_choice} is not in your list of tasks")
+            time.sleep(2)
+    elif choice==6:
         break
     
     else:
@@ -79,3 +91,4 @@ while True:
     os.system('clear')
     
 print("Youve exited the program")
+
