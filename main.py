@@ -23,8 +23,18 @@ def delete_task():
 
 def view_tasks():
     os.system("clear")
+    print("TASK VIEWER")
+    if not tasks:
+        print("Your list is empty")
     for task in range(len(tasks)):
         print(f"{task+1}: {tasks[task]}")
+    if tasks:
+        fully_remove = input("Do you want to remove everything from your to do list:> ")
+        if fully_remove == "yes":
+            re_fully_remove = input( "\033[31mAre you sure? this is irreversable\033[0m:> ")
+            if re_fully_remove.lower() == "yes":
+                tasks.clear()
+                print("Emptied list")
     time.sleep(3)
 
 def task_done():
