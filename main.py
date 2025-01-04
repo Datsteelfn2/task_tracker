@@ -5,7 +5,11 @@ done_tasks=[]
 def add_tasks():
     os.system("clear")
     add=input("What would you like to add:> ")
-    tasks.append(add)
+    if add not in tasks:
+        tasks.append(add)
+    else:
+        print("No duplicate tasks")
+        time.sleep(2)
 
 
 def delete_task():
@@ -13,9 +17,11 @@ def delete_task():
     print("You may only delete \033[31mone\033[0m task at a time")
     name_delete=input("NAME the task you wanat to delete:> ")
     if name_delete in tasks:
-        tasks.remove(name_delete)
-        print(f"{name_delete} has been deleted from your task list")
-        time.sleep(1.5)
+        delete_assurance=input("\033[0mAre you sure you want to delete this?\033[0m:> ")
+        if delete_assurance.lower()=="yes":
+            tasks.remove(name_delete)
+            print(f"{name_delete} has been deleted from your task list")
+            time.sleep(1.5)
     else:
         print(f"{name_delete} is not in your tasks list, press 3 on your menu to see your tasks names")
         time.sleep(3)
